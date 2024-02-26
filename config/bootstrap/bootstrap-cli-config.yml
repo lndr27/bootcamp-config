@@ -56,17 +56,23 @@ bootstrap:
     # Mapping between IDP (Azure Active Directory) groups and CDF groups.
     idp-cdf-mappings:
     # Support multiple CDF Projects, like dev/test/prod in one config.
-        - cdf-project: cdf-bootcamp-14-test # i.e. bootcamp-01-test
+        - cdf-project: cdf-bootcamp-14-test
           mappings:
               - cdf-group: cdf:root
                 idp-source-id: eabbe783-7cda-4b40-89fe-c7a04705e57f
                 idp-source-name: bootcamp-14-test-admin
               - cdf-group: cdf:all:owner
-                idp-source-id: c625967b-ff1d-4d19-bfae-5bbc5feea5c6 # for the AAD Group to be matched to cdf-group
-                idp-source-name: bootcamp-14-test-all-owner # i.e. bootcamp-01-test-all-owner
+                idp-source-id: c625967b-ff1d-4d19-bfae-5bbc5feea5c6
+                idp-source-name: bootcamp-14-test-all-owner
               - cdf-group: cdf:all:read
-                idp-source-id: 4acff608-d072-40e9-b0dc-85f16e5d8740 # for the AAD Group to be matched to cdf-group
-                idp-source-name: bootcamp-14-test-all-read # i.e. bootcamp-01-test-all-read
+                idp-source-id: 4acff608-d072-40e9-b0dc-85f16e5d8740
+                idp-source-name: bootcamp-14-test-all-read
+              - cdf-group: cdf:uc:001:oee:owner
+                idp-source-id: aaa1b338-dc22-453c-b52c-d2afc51840e6
+                idp-source-name: bootcamp-14-test-uc-001-oee-owner
+              - cdf-group: cdf:uc:001:oee:read
+                idp-source-id: 9f4c1350-74e5-470b-80ae-d93994399094
+                idp-source-name: bootcamp-14-test-uc-001-oee-read
 
         - cdf-project: cdf-bootcamp-14-prod # i.e. bootcamp-01-test
           mappings:
@@ -79,6 +85,12 @@ bootstrap:
               - cdf-group: cdf:all:read
                 idp-source-id: b8a421a1-9a3f-4bd8-8acb-5bdc3cfd138f # for the AAD Group to be matched to cdf-group
                 idp-source-name: bootcamp-14-prod-all-read # i.e. bootcamp-01-test-all-read
+              - cdf-group: cdf:uc:001:oee:owner
+                idp-source-id: 8e88409f-82e1-44dc-afd0-454fcfbbf089
+                idp-source-name: bootcamp-14-test-uc-001-oee-owner
+              - cdf-group: cdf:uc:001:oee:read
+                idp-source-id: 13a8ae9c-7f26-43c2-878b-5f4477ff6439
+                idp-source-name: bootcamp-14-test-uc-001-oee-read
 
 
     namespaces:
