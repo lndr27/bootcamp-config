@@ -1,0 +1,2961 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 14,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 80
+              },
+              {
+                "color": "green",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.0-67429",
+      "targets": [
+        {
+          "aggregation": "none",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='oee'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "OEE for $production_line",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OPEC386 Oee"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg(OPEC386 Oee, OPEW729 Oee, OPEHT947 Oee, OPEWOTTE981 Oee)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Production Line's oee"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine's oee"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 18,
+        "x": 6,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='oee'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "Production Line's oee",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='oee'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "Machine's oee",
+          "latestValue": false,
+          "refId": "B",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$production_line x $machine oee",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 80
+              },
+              {
+                "color": "green",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 0,
+        "y": 9
+      },
+      "id": 4,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.0-67429",
+      "targets": [
+        {
+          "aggregation": "none",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='availability'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$production_line - Availability",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Production Line's availabiility"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine's availabiility"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Status$/"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 5
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    15
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 18,
+        "x": 6,
+        "y": 9
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='availability'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "Production Line's availabiility",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='availability'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "Machine's availabiility",
+          "latestValue": false,
+          "refId": "B",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "stepInterpolation",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='status'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "",
+          "latestValue": false,
+          "refId": "C",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "stepInterpolation",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='planned_status'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "",
+          "latestValue": false,
+          "refId": "D",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$production_line x $machine - Availability",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 80
+              },
+              {
+                "color": "green",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 0,
+        "y": 18
+      },
+      "id": 6,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.0-67429",
+      "targets": [
+        {
+          "aggregation": "none",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='quality'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$production_line - Quality",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Production Line's quaility"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine's quaility"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Good|Count$/"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 18,
+        "x": 6,
+        "y": 18
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='quality'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "Production Line's quaility",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='quality'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "Machine's quaility",
+          "latestValue": false,
+          "refId": "B",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='count'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "",
+          "latestValue": false,
+          "refId": "C",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='good'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "",
+          "latestValue": false,
+          "refId": "D",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$production_line x $machine - Quaility",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 80
+              },
+              {
+                "color": "green",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 0,
+        "y": 27
+      },
+      "id": 8,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.0-67429",
+      "targets": [
+        {
+          "aggregation": "none",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='performance'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$production_line - Performance",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OPEC386 Oee"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg(OPEC386 Oee, OPEW729 Oee, OPEHT947 Oee, OPEWOTTE981 Oee)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Production Line's oee"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine's oee"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Production Line's performance"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine's performance"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 18,
+        "x": 6,
+        "y": 27
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "avg(ts{metadata={type='performance'},assetSubtreeIds=[{id=$production_line}]})",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "Production Line's performance",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='performance'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "Machine's performance",
+          "latestValue": false,
+          "refId": "B",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "none",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='status'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "",
+          "latestValue": false,
+          "refId": "C",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$production_line x $machine - Performance",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "cognitedata-datasource",
+        "uid": "cde2u5b8ke0w0b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OPFWT265 Availability"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OPFWT265 Performance"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OPFWT265 Quality"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "A * P"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "OEE"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OEE"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 36
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='availability'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "label": "",
+          "latestValue": false,
+          "refId": "A",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "CPAT812:availability",
+          "targetRefType": "externalId",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='performance'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "",
+          "latestValue": false,
+          "refId": "P",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        },
+        {
+          "aggregation": "average",
+          "assetQuery": {
+            "includeSubTimeseries": true,
+            "includeSubtrees": false,
+            "relationshipsQuery": {
+              "dataSetIds": [],
+              "depth": 1,
+              "isActiveAtTime": false,
+              "isTypeTimeseries": false,
+              "labels": {
+                "containsAny": []
+              },
+              "limit": 1000,
+              "sourceExternalIds": []
+            },
+            "target": "",
+            "withRelationships": false
+          },
+          "datasource": {
+            "type": "cognitedata-datasource",
+            "uid": "cde2u5b8ke0w0b"
+          },
+          "eventQuery": {
+            "activeAtTimeRange": true,
+            "advancedFilter": "",
+            "aggregate": {
+              "name": "uniqueValues",
+              "properties": [],
+              "withAggregate": false
+            },
+            "columns": [
+              "externalId",
+              "type",
+              "subtype",
+              "description",
+              "startTime",
+              "endTime"
+            ],
+            "expr": ""
+          },
+          "expr": "ts{metadata={type='quality'},assetSubtreeIds=[{id=$machine}]}",
+          "extractionPipelinesQuery": {
+            "columns": [
+              "name",
+              "status",
+              "lastUpdatedTime",
+              "lastFailure",
+              "lastSeen",
+              "lastSuccess",
+              "schedule",
+              "data set",
+              "message"
+            ],
+            "getRuns": false,
+            "limit": 1000,
+            "selections": []
+          },
+          "flexibleDataModellingQuery": {
+            "externalId": "",
+            "graphQlQuery": "{\n  listMachine {\n    items {\n      __typename\n      MachineWeight\n      Model\n      Anomalies {\n        externalId\n        id\n        name\n        __typename\n      }\n      Availability {\n        id\n        name\n        externalId\n        __typename\n      }\n    }\n  }\n}",
+            "tsKeys": []
+          },
+          "granularity": "",
+          "hide": false,
+          "label": "",
+          "latestValue": false,
+          "refId": "Q",
+          "relationshipsQuery": {
+            "dataSetIds": [],
+            "depth": 1,
+            "isActiveAtTime": false,
+            "isTypeTimeseries": false,
+            "labels": {
+              "containsAny": []
+            },
+            "limit": 1000,
+            "sourceExternalIds": []
+          },
+          "tab": "Custom",
+          "target": "",
+          "templateQuery": {
+            "dataPath": "oEE_MachinesQuery.items",
+            "datapointsPath": "GoodQuantity.datapoints",
+            "graphQlQuery": "{\n  oEE_MachinesQuery {\n    items {\n      Facility\n      Line\n      GoodQuantity {\n        datapoints (start: $__from, end: $__to, , limit: 100){\n            value\n            timestamp\n        }\n      }\n    }\n  }\n}",
+            "groupBy": "Facility"
+          }
+        }
+      ],
+      "title": "$machine - Overall Equipment Efficiency",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "A * P",
+            "binary": {
+              "left": "OPFWT265 Availability",
+              "operator": "*",
+              "right": "OPFWT265 Performance"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "OEE",
+            "binary": {
+              "left": "A * P",
+              "operator": "*",
+              "right": "OPFWT265 Quality"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "oslo",
+          "value": "oslo"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Selected Site",
+        "multi": false,
+        "name": "site",
+        "options": [
+          {
+            "selected": true,
+            "text": "oslo",
+            "value": "oslo"
+          },
+          {
+            "selected": false,
+            "text": "hannover",
+            "value": "hannover"
+          },
+          {
+            "selected": false,
+            "text": "nuremberg",
+            "value": "nuremberg"
+          },
+          {
+            "selected": false,
+            "text": "marseille",
+            "value": "marseille"
+          },
+          {
+            "selected": false,
+            "text": "houston",
+            "value": "houston"
+          },
+          {
+            "selected": false,
+            "text": "sao_paulo",
+            "value": "sao_paulo"
+          },
+          {
+            "selected": false,
+            "text": "kuala_lumpur",
+            "value": "kuala_lumpur"
+          },
+          {
+            "selected": false,
+            "text": "chicago",
+            "value": "chicago"
+          },
+          {
+            "selected": false,
+            "text": "rotterdam",
+            "value": "rotterdam"
+          },
+          {
+            "selected": false,
+            "text": "london",
+            "value": "london"
+          }
+        ],
+        "query": "oslo,hannover,nuremberg,marseille,houston,sao_paulo,kuala_lumpur,chicago,rotterdam,london",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Filling Line",
+          "value": "1334375257243923"
+        },
+        "datasource": {
+          "type": "cognitedata-datasource",
+          "uid": "cde2u5b8ke0w0b"
+        },
+        "definition": "assets{parentExternalIds=['${site}_production']}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Production Line",
+        "multi": false,
+        "name": "production_line",
+        "options": [],
+        "query": {
+          "query": "assets{parentExternalIds=['${site}_production']}",
+          "valueType": {
+            "label": "Id",
+            "value": "id"
+          }
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Wet Topping",
+          "value": "280896155286264"
+        },
+        "datasource": {
+          "type": "cognitedata-datasource",
+          "uid": "cde2u5b8ke0w0b"
+        },
+        "definition": "assets{parentIds=[$production_line]}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Machine",
+        "multi": false,
+        "name": "machine",
+        "options": [],
+        "query": {
+          "query": "assets{parentIds=[$production_line]}",
+          "valueType": {
+            "label": "Id",
+            "value": "id"
+          }
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Bootcamp",
+  "uid": "dde2uwk42zw8wa",
+  "version": 4,
+  "weekStart": ""
+}
